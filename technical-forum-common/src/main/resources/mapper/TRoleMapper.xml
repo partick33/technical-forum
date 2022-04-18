@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.partick.forum.common.db.mapper.TRoleMapper">
+
+    <resultMap id="BaseResultMap" type="com.partick.forum.common.db.pojo.TRole">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="roleId" column="role_id" jdbcType="CHAR"/>
+            <result property="roleName" column="role_name" jdbcType="CHAR"/>
+            <result property="isDeleted" column="is_deleted" jdbcType="INTEGER"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="createBy" column="create_by" jdbcType="VARCHAR"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+            <result property="updateBy" column="update_by" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,role_id,role_name,
+        is_deleted,create_time,create_by,
+        update_time,update_by
+    </sql>
+</mapper>

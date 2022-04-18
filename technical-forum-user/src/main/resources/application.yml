@@ -1,0 +1,27 @@
+server:
+  port: 8501
+spring:
+  application:
+    name: forum-user-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.116.108:8848
+        username: nacos
+        password: nacos
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3308/technical_forum?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+  redis:
+    password: 123456
+    sentinel:
+      nodes: 192.168.116.108:26379
+      master: mymaster
+
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

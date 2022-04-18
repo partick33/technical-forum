@@ -1,0 +1,31 @@
+server:
+  port: 8502
+spring:
+  application:
+    name: forum-category-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.116.108:8848
+        username: nacos
+        password: nacos
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3308/technical_forum?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+  data:
+    mongodb:
+      uri: mongodb://admin:123456@192.168.116.109:27018,192.168.116.110:27018,192.168.116.111:27018,192.168.116.112:27018/technical_forum?replSet=myreplSet&authSource=admin
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+technical-forum:
+  categoryname:
+    segmentfault: 思否
+  categorylocaladdr:
+    cnblogsaddr: forumcategoryfield/cnblogs.html
+

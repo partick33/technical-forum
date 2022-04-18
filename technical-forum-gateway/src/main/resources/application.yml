@@ -1,0 +1,38 @@
+server:
+  port: 8700
+spring:
+  application:
+    name: forum-gateway-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.116.108:8848
+        username: nacos
+        password: nacos
+    gateway:
+      discovery:
+        locator:
+          enabled: false
+      routes:
+        - id: forum-user-service-route
+          uri: lb://forum-user-service
+          predicates:
+            - Path=/user/** #:8700/user/login -> /user/login
+        - id: forum-category-service-route-forum
+          uri: lb://forum-category-service
+          predicates:
+            - Path=/forum/**,/category/**,/forumCategory/**,/article/**
+      globalcors:
+        cors-configurations:
+          '[/**]': #gateway网关上所有URI都应用下面的跨域设计
+            allowed-credentials: true #允许携带认证信息
+            allowed-origins:
+              - "*" #允许所有来源进行跨域访问
+            allowed-headers: "*"
+            allowed-methods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTIONS
+            max-age: 3600

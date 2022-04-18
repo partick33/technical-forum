@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.partick.forum.common.db.mapper.TEleForumCategoryMapper">
+
+    <resultMap id="BaseResultMap" type="com.partick.forum.common.db.pojo.TEleForumCategory">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="categoryId" column="category_id" jdbcType="CHAR"/>
+            <result property="forumNavId" column="forum_nav_id" jdbcType="CHAR"/>
+            <result property="forumNav" column="forum_nav" jdbcType="CHAR"/>
+            <result property="forumNavUrl" column="forum_nav_url" jdbcType="VARCHAR"/>
+            <result property="finalUrl" column="final_url" jdbcType="VARCHAR"/>
+            <result property="isDeleted" column="is_deleted" jdbcType="INTEGER"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="createBy" column="create_by" jdbcType="VARCHAR"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+            <result property="updateBy" column="update_by" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,category_id,forum_nav_id,
+        forum_nav,forum_nav_url,final_url,
+        is_deleted,create_time,create_by,
+        update_time,update_by
+    </sql>
+
+    <select id="queryByCategoryId" resultType="com.partick.forum.common.vo.ForumCategoryVO">
+        select  category_id, forum_nav_id,forum_nav,forum_nav_url,final_url
+        from t_ele_forum_category
+        where is_deleted = 0 and category_id=#{categoryId}
+    </select>
+
+    <select id="queryByForumId" resultType="com.partick.forum.common.vo.ForumCategoryVO">
+        SELECT
+            forum_nav_id,forum_nav
+        from
+            t_ele_forum_category
+        where
+                category_id=(SELECT
+                                 category_id
+                             from
+                                 t_category
+                             where
+                                 forum_id=#{forumId})
+    </select>
+</mapper>
