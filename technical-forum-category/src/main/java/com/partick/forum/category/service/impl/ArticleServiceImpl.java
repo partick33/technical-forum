@@ -3,7 +3,7 @@ package com.partick.forum.category.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.partick.forum.category.jsoup.ArticleFromJsoup;
 import com.partick.forum.category.service.ArticleService;
-import com.partick.forum.common.config.MyThreadPool;
+import com.partick.forum.common.threadpool.ForumCategoryThreadPool;
 import com.partick.forum.common.db.mapper.TCategoryMapper;
 import com.partick.forum.common.db.mapper.TEleForumCategoryMapper;
 import com.partick.forum.common.db.pojo.TEleForumCategory;
@@ -41,7 +41,7 @@ public class ArticleServiceImpl implements ArticleService {
     private ArticleDetailMapper articleDetailMapper;
 
     @Resource
-    private MyThreadPool myThreadPool;
+    private ForumCategoryThreadPool forumCategoryThreadPool;
 
     /**
      * 爬取文章信息
@@ -149,7 +149,7 @@ public class ArticleServiceImpl implements ArticleService {
                 .queryCategoryIdByForumNameAndCategoryName(forumName, categoryName);
         List<TEleForumCategory> forumCategories = eleForumCategoryMapper
                 .selectList(new QueryWrapper<TEleForumCategory>().eq("category_id", categoryId));
-        ThreadPoolTaskExecutor executor = myThreadPool.articleInfoExecutor();
+        ThreadPoolTaskExecutor executor = forumCategoryThreadPool.articleInfoExecutor();
         forumCategories.forEach(o -> {
             executor.submit(() -> {
                 putArticleInfoToMongodb(forumName, categoryId, categoryName, o.getForumNavId(),o.getForumNav(), o.getFinalUrl());
@@ -176,7 +176,7 @@ public class ArticleServiceImpl implements ArticleService {
     private void putArticleDetail(String forumName, String categoryName) {
         List<ArticleInfo> articleInfoList = articleInfoMapper
                 .queryByForumNameAndCategoryName(forumName, categoryName);
-        ThreadPoolTaskExecutor executor = myThreadPool.articleDetailExecutor();
+        ThreadPoolTaskExecutor executor = forumCategoryThreadPool.articleDetailExecutor();
         articleInfoList.forEach(a -> {
             executor.submit(() -> {
                         ArticleDetail articleDetail1 = articleDetailMapper.queryByArticleIdAndDate(a.getArticleInfoId());

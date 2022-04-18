@@ -46,4 +46,10 @@ public class ArticleInfoMapper {
                 .addCriteria(Criteria.where("forumCategoryId").is(forumCategoryId)
                         .and("createTime").is(DateUtil.offset(DateUtil.parse(DateUtil.today()), DateField.HOUR, 8))), ArticleInfo.class);
     }
+
+    public List<ArticleInfo> queryByToday() {
+        return mongoTemplate.find(new Query()
+                .addCriteria(Criteria.where("createTime").is(DateUtil.offset(DateUtil.parse(DateUtil.today())
+                        ,DateField.HOUR,8))),ArticleInfo.class);
+    }
 }

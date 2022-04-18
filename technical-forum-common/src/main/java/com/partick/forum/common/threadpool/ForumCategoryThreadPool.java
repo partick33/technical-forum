@@ -1,4 +1,4 @@
-package com.partick.forum.common.config;
+package com.partick.forum.common.threadpool;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,7 +11,7 @@ import java.util.concurrent.ThreadPoolExecutor;
  * @author partick_peng
  */
 @Configuration
-public class MyThreadPool{
+public class ForumCategoryThreadPool {
 
     @Bean(name = "articleInfoExecutor")
     public ThreadPoolTaskExecutor articleInfoExecutor() {

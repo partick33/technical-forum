@@ -1,0 +1,18 @@
+server:
+  port: 8503
+spring:
+  application:
+    name: forum-article-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.116.108:8848
+        username: nacos
+        password: nacos
+  data:
+    mongodb:
+      uri: mongodb://admin:123456@192.168.116.109:27018,192.168.116.110:27018,192.168.116.111:27018,192.168.116.112:27018/technical_forum?replSet=myreplSet&authSource=admin
+
+
+
+
