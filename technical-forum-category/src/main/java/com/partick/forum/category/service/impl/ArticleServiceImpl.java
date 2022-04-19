@@ -2,6 +2,7 @@ package com.partick.forum.category.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.partick.forum.category.jsoup.ArticleFromJsoup;
+import com.partick.forum.category.rocketmq.ArticleProducer;
 import com.partick.forum.category.service.ArticleService;
 import com.partick.forum.common.threadpool.ForumCategoryThreadPool;
 import com.partick.forum.common.db.mapper.TCategoryMapper;
@@ -43,6 +44,9 @@ public class ArticleServiceImpl implements ArticleService {
     @Resource
     private ForumCategoryThreadPool forumCategoryThreadPool;
 
+    @Resource
+    private ArticleProducer articleProducer;
+
     /**
      * 爬取文章信息
      */
@@ -52,6 +56,7 @@ public class ArticleServiceImpl implements ArticleService {
             putArticleInfo("开源中国", "博客");
             putArticleInfo("思否", "专栏");
             putArticleInfo("博客园", "分类");
+            articleProducer.sendArticleInfoToEs();
         } catch (Exception e) {
             e.printStackTrace();
         }

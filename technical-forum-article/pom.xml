@@ -26,16 +26,6 @@
             <groupId>com.partick</groupId>
             <artifactId>technical-forum-common</artifactId>
             <version>0.0.1-SNAPSHOT</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>mysql</groupId>
-                    <artifactId>mysql-connector-java</artifactId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>mybatis-plus-boot-starter</artifactId>
-                    <groupId>com.baomidou</groupId>
-                </exclusion>
-            </exclusions>
         </dependency>
 
         <dependency>
