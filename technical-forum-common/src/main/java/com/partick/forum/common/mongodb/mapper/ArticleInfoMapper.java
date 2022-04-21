@@ -37,7 +37,10 @@ public class ArticleInfoMapper {
 
     public List<ArticleInfo> queryByForumNameAndCategoryName(String forumName, String categoryName) {
         Query query = new Query();
-        query.addCriteria(Criteria.where("forumName").is(forumName).and("categoryName").is(categoryName));
+        query.addCriteria(Criteria.where("forumName").is(forumName)
+                .and("categoryName").is(categoryName)
+                .and("createTime").is(DateUtil.offset(DateUtil.parse(DateUtil.today()), DateField.HOUR, 8))
+        );
         return mongoTemplate.find(query, ArticleInfo.class);
     }
 

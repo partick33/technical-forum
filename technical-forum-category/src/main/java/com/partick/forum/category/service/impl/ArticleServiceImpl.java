@@ -112,15 +112,15 @@ public class ArticleServiceImpl implements ArticleService {
         switch (forumName) {
             case "开源中国":
                 ArticleDetail oschinaArticleDetailFromJsoup = articleFromJsoup.getOschinaArticleDetailFromJsoup(url);
-                putArticleDetailToMongodb(articleInfoId, title, url, oschinaArticleDetailFromJsoup);
+                putArticleDetailToMongodb(articleInfoId,title, url, oschinaArticleDetailFromJsoup);
                 break;
             case "思否":
                 ArticleDetail segmentFaultArticleDetailFromJsoup = articleFromJsoup.getSegmentFaultArticleDetailFromJsoup(url);
-                putArticleDetailToMongodb(articleInfoId, title, url, segmentFaultArticleDetailFromJsoup);
+                putArticleDetailToMongodb(articleInfoId,title, url, segmentFaultArticleDetailFromJsoup);
                 break;
             case "博客园":
                 ArticleDetail cnBlogsArticleDetailFromJsoup = articleFromJsoup.getCnBlogsArticleDetailFromJsoup(url);
-                putArticleDetailToMongodb(articleInfoId, title, url, cnBlogsArticleDetailFromJsoup);
+                putArticleDetailToMongodb(articleInfoId,title, url, cnBlogsArticleDetailFromJsoup);
                 break;
             default:
                 break;
@@ -195,7 +195,7 @@ public class ArticleServiceImpl implements ArticleService {
         });
     }
 
-    private void putArticleDetailToMongodb(String articleInfoId, String title, String url, ArticleDetail articleDetail) {
+    private void putArticleDetailToMongodb(String articleInfoId,String title, String url, ArticleDetail articleDetail) {
         articleDetail.setArticleInfoId(articleInfoId);
         articleDetail.setTitle(title);
         articleDetail.setUrl(url);

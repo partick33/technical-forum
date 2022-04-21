@@ -1,6 +1,8 @@
 package com.partick.forum.article.service;
 
 import com.partick.forum.common.elasticsearch.pojo.EsArticle;
+import com.partick.forum.common.elasticsearch.pojo.EsArticleCount;
+import com.partick.forum.common.elasticsearch.pojo.EsKeyWordCount;
 
 import java.util.List;
 
@@ -21,4 +23,17 @@ public interface EsArticleService {
      * @return
      */
     List<EsArticle> queryLikeTitle(String title);
+
+
+    /**
+     * 查询标题中出现关键字次数
+     * @return
+     */
+    List<EsKeyWordCount> queryTitleKeyWordCount();
+
+    /**
+     * 分组统计每个论坛的文章总数
+     * @return
+     */
+    List<EsArticleCount> queryEsArticleCountByForum();
 }
