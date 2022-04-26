@@ -1,5 +1,6 @@
 package com.partick.forum.category.controller;
 
+import com.partick.forum.category.annoation.RedissionLock;
 import com.partick.forum.category.service.ArticleService;
 import com.partick.forum.common.config.CommonResult;
 import com.partick.forum.common.mongodb.pojo.ArticleDetail;
@@ -23,12 +24,14 @@ public class ArticleController {
     private ArticleService articleService;
 
     @GetMapping("/putArticleInfo")
+    @RedissionLock(expireTime = 60 * 60 * 2, lockName = "putArticleInfo")
     public CommonResult putArticleInfo() {
         articleService.putArticleInfo();
         return new CommonResult(true, "推送成功");
     }
 
     @GetMapping("/putArticleDetail")
+    @RedissionLock(expireTime = 60 * 60 * 4, lockName = "putArticleDetail")
     public CommonResult putArticleDetail() {
         articleService.putArticleDetail();
         return new CommonResult(true, "推送成功");

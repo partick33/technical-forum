@@ -11,6 +11,7 @@
         <module>technical-forum-gateway</module>
         <module>technical-forum-category</module>
         <module>technical-forum-article</module>
+        <module>technical-forum-job</module>
     </modules>
     <name>technical-forum</name>
     <description>Demo project for Spring Boot</description>
@@ -110,6 +111,11 @@
                 <groupId>org.elasticsearch</groupId>
                 <artifactId>elasticsearch</artifactId>
                 <version>7.9.3</version>
+            </dependency>
+            <dependency>
+                <groupId>org.redisson</groupId>
+                <artifactId>redisson</artifactId>
+                <version>3.16.0</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

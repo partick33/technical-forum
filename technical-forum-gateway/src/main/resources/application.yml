@@ -26,6 +26,10 @@ spring:
           uri: lb://forum-article-service
           predicates:
             - Path=/esArticle/**
+        - id: forum-job-service-route-forum
+          uri: lb://forum-job-service
+          predicates:
+            - Path=/job/**
       globalcors:
         cors-configurations:
           '[/**]': #gateway网关上所有URI都应用下面的跨域设计

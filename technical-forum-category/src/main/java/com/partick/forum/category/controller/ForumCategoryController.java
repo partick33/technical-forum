@@ -1,5 +1,6 @@
 package com.partick.forum.category.controller;
 
+import com.partick.forum.category.annoation.RedissionLock;
 import com.partick.forum.category.service.ForumCategoryService;
 import com.partick.forum.common.config.CommonResult;
 import com.partick.forum.common.vo.ForumCategoriesVO;
@@ -45,6 +46,7 @@ public class ForumCategoryController {
     }
 
     @GetMapping("/putForumCategoryInfo")
+    @RedissionLock(expireTime = 60 * 60 * 24, lockName = "putForumCategoryInfo")
     public CommonResult putForumCategoryInfo() {
         forumCategoryService.putForumCategoryInfo();
         return new CommonResult(true, "爬取分类信息成功");
