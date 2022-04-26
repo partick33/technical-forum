@@ -17,6 +17,7 @@
 - 数据库：Mysql、Mongodb集群
 - 消息中间件：Rocketmq
 - 缓存数据库：Redis哨兵集群
+- 分布式锁：Redission
 - 搜索引擎：Elasticsearch集群
 - 前端框架&UI框架：Vue、Ant Design Vue 
 
