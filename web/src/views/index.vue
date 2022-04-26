@@ -13,9 +13,15 @@
           forum.forumName
         }}</a-menu-item>
 
-        <a-menu-item>
+        <a-menu-item key="dataStatistics">
           <router-link key="dataStatistics" to="/dataStatistics">
             数据分析
+          </router-link>
+        </a-menu-item>
+
+        <a-menu-item key="job">
+          <router-link key="job" to="/job">
+            调度中心
           </router-link>
         </a-menu-item>
 
@@ -26,25 +32,6 @@
           enter-button
           @search="routeToSearch(value)"
         />
-
-        <a-button
-          type="danger"
-          style="position: absolute; top: 15px; right: 340px"
-          @click="putForumCategoryInfo"
-          >同步博客分类信息</a-button
-        >
-        <a-button
-          type="danger"
-          style="position: absolute; top: 15px; right: 180px"
-          @click="putArticleInfo"
-          >同步文章概要信息</a-button
-        >
-        <a-button
-          type="danger"
-          style="position: absolute; top: 15px; right: 20px"
-          @click="putArticleDetail"
-          >同步文章详细信息</a-button
-        >
       </a-menu>
     </a-layout-header>
     <a-layout-content :style="{ padding: '0 50px', marginTop: '64px' }">
@@ -164,21 +151,6 @@ export default defineComponent({
         });
     };
 
-    const putForumCategoryInfo = () => {
-      axios.get(url + "/forumCategory/putForumCategoryInfo");
-      message.success("正在同步，请稍后");
-    };
-
-    const putArticleInfo = () => {
-      axios.get(url + "/article/putArticleInfo");
-      message.success("正在同步，请稍后");
-    };
-
-    const putArticleDetail = () => {
-      axios.get(url + "/article/putArticleDetail");
-      message.success("正在同步，请稍后");
-    };
-
     const routeToSearch = (value) => {
       router.push({
         name: "search",
@@ -219,9 +191,6 @@ export default defineComponent({
       handleOk,
       clickMenu,
       getArticleInfo,
-      putForumCategoryInfo,
-      putArticleInfo,
-      putArticleDetail,
       routeToSearch,
     };
   },
