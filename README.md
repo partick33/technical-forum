@@ -9,7 +9,7 @@
 ##### 2.技术选型
 
 - 微服务框架：SpringCloud Alibaba
-
+  
 - 配置中心和注册中心：Nacos
 - 网关：Gateway
 - 持久层：Mybatis-plus
